@@ -1,7 +1,7 @@
 const std = @import("std");
 
 pub fn main() void {
-    var gpa = std.heap.GeneralPurposeAllocator().init;
+    var gpa: std.heap.GeneralPurposeAllocator(.{}) = .init;
     const allocator = gpa.allocator();
     defer {
         const deinit_status = gpa.deinit();
@@ -11,7 +11,5 @@ pub fn main() void {
     const args = try std.process.argsWithAllocator(allocator);
     defer std.process.argsFree(allocator, args);
 
-    for (args, 0..) |arg, i| {
-        std.debug.print("Argument{}: {s}", .{ i, arg });
-    }
+    std.debug.print("args: {s}", .{args});
 }
