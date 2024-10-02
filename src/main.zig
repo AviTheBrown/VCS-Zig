@@ -8,8 +8,8 @@ pub fn main() void {
         if (deinit_status == .leak) @panic("Memory Leak Detected");
     }
 
-    const args = try std.process.argsWithAllocator(allocator);
-    defer std.process.argsFree(allocator, args);
+    var args = try std.process.argsWithAllocator(allocator);
+    defer args.deinit();
 
-    std.debug.print("args: {s}", .{args});
+    std.debug.print("args: {any}", .{args});
 }
