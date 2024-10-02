@@ -14,7 +14,7 @@ pub fn main() void {
     var arg_index: usize = 0;
 
     while (args.next()) |arg| {
-        std.debug.print("Argument {}: {s}\t", .{ arg_index, arg });
+        std.debug.print("Argument {}: {s}\n", .{ arg_index, arg });
         arg_index += 1;
     }
 }
