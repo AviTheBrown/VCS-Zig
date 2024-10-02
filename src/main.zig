@@ -11,5 +11,10 @@ pub fn main() void {
     var args = try std.process.argsWithAllocator(allocator);
     defer args.deinit();
 
-    std.debug.print("args: {any}", .{args});
+    var arg_index: usize = 0;
+
+    while (args.next()) |arg| {
+        std.debug.print("Argument {}: {s}\t", .{ arg_index, arg });
+        arg_index += 1;
+    }
 }
